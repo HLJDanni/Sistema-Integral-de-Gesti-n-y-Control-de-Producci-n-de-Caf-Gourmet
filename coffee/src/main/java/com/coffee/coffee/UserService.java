@@ -48,4 +48,22 @@ public class UserService {
             System.out.println("Error al insertar usuario: " + e.getMessage());
         }
     }
+
+    public boolean autenticarUsuario(String username, String password) {
+    String query = "SELECT COUNT(*) FROM users WHERE username = ? AND password = ?";
+    try (Connection conn = db.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(query)) {
+
+        stmt.setString(1, username);
+        stmt.setString(2, password);
+        ResultSet rs = stmt.executeQuery();
+        return rs.next() && rs.getInt(1) > 0;
+
+    } catch (Exception e) {
+        System.out.println("Error al autenticar usuario: " + e.getMessage());
+        return false;
+    }
+}
+
+
 }
