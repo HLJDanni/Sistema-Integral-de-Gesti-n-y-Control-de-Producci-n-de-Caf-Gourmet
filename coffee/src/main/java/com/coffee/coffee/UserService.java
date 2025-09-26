@@ -28,19 +28,19 @@ public class UserService {
         }
     }
 
-    public void registrarUsuario(String username, String password, String propietario) {
+    public void registrarUsuario(String username, String password, String rol) {
         if (usuarioExiste(username)) {
             System.out.println("El usuario '" + username + "' ya existe. No se puede insertar.");
             return;
         }
 
-        String insert = "INSERT INTO users (username, password, propietario) VALUES (?, ?, ?)";
+        String insert = "INSERT INTO users (username, password, rol) VALUES (?, ?, ?)";
         try (Connection conn = db.getConnection();
              PreparedStatement stmt = conn.prepareStatement(insert)) {
 
             stmt.setString(1, username);
             stmt.setString(2, password);
-            stmt.setString(3, propietario);
+            stmt.setString(3, rol);
             stmt.executeUpdate();
             System.out.println("✅ Usuario '" + username + "' registrado correctamente.");
 
