@@ -6,9 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.coffee.coffee.DbConnection;
-
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
