@@ -16,24 +16,20 @@ public class DbConnection {
     private boolean configCargada = false;
 
     public DbConnection() {
-        Properties props = new Properties();
-<<<<<<< HEAD
-        try (FileInputStream fis = new FileInputStream("properties.properties")) {
-=======
-        try (FileInputStream fis = new FileInputStream("config.properties")) {
->>>>>>> master
-            props.load(fis);
-            this.host = props.getProperty("host");
-            this.port = Integer.parseInt(props.getProperty("port"));
-            this.database = props.getProperty("database");
-            this.username = props.getProperty("username");
-            this.password = props.getProperty("password");
-            this.timeout = Integer.parseInt(props.getProperty("timeout"));
-            this.maxConnections = Integer.parseInt(props.getProperty("maxConnections"));
-            configCargada = true;
-        } catch (IOException | NumberFormatException e) {
-            System.out.println("Error al cargar el archivo de configuración: " + e.getMessage());
-        }
+Properties props = new Properties();
+try (FileInputStream fis = new FileInputStream("config.properties")) {
+    props.load(fis);
+    this.host = props.getProperty("host");
+    this.port = Integer.parseInt(props.getProperty("port"));
+    this.database = props.getProperty("database");
+    this.username = props.getProperty("username");
+    this.password = props.getProperty("password");
+    this.timeout = Integer.parseInt(props.getProperty("timeout"));
+    this.maxConnections = Integer.parseInt(props.getProperty("maxConnections"));
+    configCargada = true;
+} catch (IOException | NumberFormatException e) {
+    System.out.println("Error al cargar el archivo de configuración: " + e.getMessage());
+}
     }
 
     public Connection getConnection() {
