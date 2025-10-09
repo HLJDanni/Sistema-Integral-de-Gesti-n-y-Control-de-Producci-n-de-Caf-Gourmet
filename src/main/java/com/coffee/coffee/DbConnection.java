@@ -1,4 +1,5 @@
 package com.coffee.coffee;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,11 +18,7 @@ public class DbConnection {
 
     public DbConnection() {
         Properties props = new Properties();
-<<<<<<< HEAD
-        try (FileInputStream fis = new FileInputStream("properties.properties")) {
-=======
-        try (FileInputStream fis = new FileInputStream("config.properties")) {
->>>>>>> master
+        try (FileInputStream fis = new FileInputStream("src/main/resources/config.properties");) {
             props.load(fis);
             this.host = props.getProperty("host");
             this.port = Integer.parseInt(props.getProperty("port"));
@@ -43,7 +40,7 @@ public class DbConnection {
         }
 
         try {
-            String url = "jdbc:postgresql://" + host + ":" + port + "/" + database;
+            String url = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";encrypt=false;trustServerCertificate=false;";
             return DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             System.out.println("Error al conectar a la base de datos: " + e.getMessage());
@@ -57,7 +54,12 @@ public class DbConnection {
             return;
         }
 
-        System.out.println(" Conexión configurada correctamente:");
-        
+        System.out.println("🔧 Conexión configurada correctamente:");
+        System.out.println("Host: " + host);
+        System.out.println("Puerto: " + port);
+        System.out.println("Base de datos: " + database);
+        System.out.println("Usuario: " + username);
+        System.out.println("Timeout: " + timeout + "s");
+        System.out.println("Máx. conexiones: " + maxConnections);
     }
 }
