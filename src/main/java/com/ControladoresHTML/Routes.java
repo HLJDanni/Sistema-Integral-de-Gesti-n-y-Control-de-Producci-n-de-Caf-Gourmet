@@ -1,7 +1,12 @@
-package com.coffee.coffee;
+package com.ControladoresHTML;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.coffee.coffee.GestiónGranos.GestionMP_GranosVerdesAdd;
+import com.coffee.coffee.GestiónGranos.TipoGrano;
+import com.coffee.coffee.GestiónGranos.TipoGranoRequest;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;

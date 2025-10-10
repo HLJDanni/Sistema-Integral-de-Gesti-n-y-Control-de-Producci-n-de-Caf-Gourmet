@@ -1,4 +1,4 @@
-package com.coffee.coffee;
+package com.Modelo.Inventario;
 
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.coffee.coffee;
+package com.coffee.coffee.GestiónGranos;
 public class TipoGranoRequest {
     private String nombre;
     private String descripcion;

@@ -1,4 +1,4 @@
-package com.coffee.coffee;
+package com.coffee.coffee.Usuarios;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
 package com.Modelo.Inventario;
 
-import com.coffee.coffee.TipoGrano;
+import com.coffee.coffee.GestiónGranos.TipoGrano;
 
 public class articulo {
     private int idArticulo;

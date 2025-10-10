@@ -1,7 +1,5 @@
-package com.coffee.coffee;
+package com.Modelo.Inventario;
 
-import com.Modelo.Inventario.inventarioDAO;
-import com.Modelo.Inventario.InventarioMod;
 import java.util.List;
 
 public class InventarioService {

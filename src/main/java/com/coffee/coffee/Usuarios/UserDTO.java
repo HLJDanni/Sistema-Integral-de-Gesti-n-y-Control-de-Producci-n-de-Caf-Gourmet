@@ -1,4 +1,4 @@
-package com.coffee.coffee;
+package com.coffee.coffee.Usuarios;
 
 public class UserDTO {
     private String username;

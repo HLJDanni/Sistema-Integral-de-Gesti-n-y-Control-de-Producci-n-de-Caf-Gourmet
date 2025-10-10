@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.coffee.coffee.DbConnection;
+import com.coffee.coffee.Conexión.DbConnection;
 
 public class InventarioMod {
     private int idInventario;

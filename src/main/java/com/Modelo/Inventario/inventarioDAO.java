@@ -7,7 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.coffee.coffee.DbConnection;
+import com.coffee.coffee.Conexión.DbConnection;
+
 import java.sql.Connection;
 
 

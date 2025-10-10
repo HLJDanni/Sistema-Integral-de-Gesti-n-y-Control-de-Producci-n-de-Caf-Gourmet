@@ -1,4 +1,4 @@
-package com.coffee.coffee;
+package com.coffee.coffee.Conexión;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
+import org.springframework.stereotype.Component;
+@Component
 public class DbConnection {
     private String host;
     private int port;

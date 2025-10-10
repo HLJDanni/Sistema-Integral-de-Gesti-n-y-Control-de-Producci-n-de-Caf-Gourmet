@@ -1,10 +1,12 @@
-package com.coffee.coffee;
+package com.coffee.coffee.Usuarios;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import org.springframework.stereotype.Service;
+import com.coffee.coffee.Conexión.DbConnection;
 
 
-
+@Service
 public class UserService {
 
     private final DbConnection db;

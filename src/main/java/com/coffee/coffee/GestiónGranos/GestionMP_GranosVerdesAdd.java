@@ -1,7 +1,9 @@
-package com.coffee.coffee;
+package com.coffee.coffee.GestiónGranos;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.coffee.coffee.Conexión.DbConnection;
 
 public class GestionMP_GranosVerdesAdd {
 

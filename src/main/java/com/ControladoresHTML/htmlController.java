@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class htmlController {
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String mostrarLogin() {
-        return "login"; // Busca login.html en /resources/templates
+        return "index"; // Busca login.html en /resources/templates
     }
 
     @GetMapping("/register")

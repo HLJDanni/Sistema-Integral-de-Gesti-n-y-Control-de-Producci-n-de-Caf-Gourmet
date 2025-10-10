@@ -1,4 +1,4 @@
-package com.coffee.coffee;
+package com.coffee.coffee.GestiónGranos;
 public class TipoGrano {
     private int id;
     private String nombre;
