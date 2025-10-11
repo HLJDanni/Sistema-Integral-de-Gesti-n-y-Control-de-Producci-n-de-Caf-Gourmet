@@ -1,67 +1,36 @@
 package com.coffee.coffee.Conexión;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.Properties;
+import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
 @Component
 public class DbConnection {
-    private String host;
-    private int port;
-    private String database;
-    private String username;
-    private String password;
-    private int timeout;
-    private int maxConnections;
-    private boolean configCargada = false;
 
-    public DbConnection() {
-        Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream("src/main/resources/config.properties");) {
-            props.load(fis);
-            this.host = props.getProperty("host");
-            this.port = Integer.parseInt(props.getProperty("port"));
-            this.database = props.getProperty("database");
-            this.username = props.getProperty("username");
-            this.password = props.getProperty("password");
-            this.timeout = Integer.parseInt(props.getProperty("timeout"));
-            this.maxConnections = Integer.parseInt(props.getProperty("maxConnections"));
-            configCargada = true;
-        } catch (IOException | NumberFormatException e) {
-            System.out.println("Error al cargar el archivo de configuración: " + e.getMessage());
-        }
-    }
+    @Value("${spring.datasource.url}")
+    private String url;
+
+    @Value("${spring.datasource.username}")
+    private String username;
+
+    @Value("${spring.datasource.password}")
+    private String password;
 
     public Connection getConnection() {
-        if (!configCargada || host == null || database == null || username == null || password == null) {
-            System.out.println("Configuración incompleta. No se puede establecer conexión.");
-            return null;
-        }
-
         try {
-            String url = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + database + ";encrypt=false;trustServerCertificate=false;";
             return DriverManager.getConnection(url, username, password);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error al conectar a la base de datos: " + e.getMessage());
             return null;
         }
     }
 
     public void printConfig() {
-        if (!configCargada || host == null || database == null || username == null) {
-            System.out.println("No se pudo establecer la configuración de conexión.");
-            return;
-        }
-
         System.out.println("🔧 Conexión configurada correctamente:");
-        System.out.println("Host: " + host);
-        System.out.println("Puerto: " + port);
-        System.out.println("Base de datos: " + database);
+        System.out.println("URL: " + url);
         System.out.println("Usuario: " + username);
-        System.out.println("Timeout: " + timeout + "s");
-        System.out.println("Máx. conexiones: " + maxConnections);
     }
 }

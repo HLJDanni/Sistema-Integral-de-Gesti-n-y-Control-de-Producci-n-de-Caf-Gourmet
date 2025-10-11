@@ -23,7 +23,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body("❌ El usuario ya existe.");
         }
-        userService.registrarUsuario(user.getUsername(), user.getPassword(), user.getPropietario());
+        userService.registrarUsuario(user.getUsername(), user.getPassword(), user.getRol());
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("✅ Usuario registrado correctamente.");
     }

@@ -3,7 +3,7 @@ package com.coffee.coffee.Usuarios;
 public class UserDTO {
     private String username;
     private String password;
-    private String propietario;
+    private String rol;
 
     // Getters y setters
     public String getUsername() {
@@ -18,11 +18,11 @@ public class UserDTO {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getPropietario() {
-        return propietario;
+    public String getRol() {
+        return rol;
     }
-    public void setPropietario(String propietario) {
-        this.propietario = propietario;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
     
 }
