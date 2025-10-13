@@ -7,22 +7,25 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.aspectj.weaver.ast.Test;
+
 import com.coffee.coffee.Conexión.DbConnection;
 
 import java.sql.Connection;
 
 
 public class inventarioDAO {
-    public void insertarInventario(InventarioMod inventario) {
-        String sql = "INSERT INTO inventario (idArticulo, cantidad, fechaActualizacion) VALUES (?, ?, ?)";
-
-        try (Connection con = new DbConnection().getConnection();
+    public void insertarInventario(InventarioMod inventario, Test test, almacen almacen) {
+        String sql = "INSERT INTO inventario (idArticulo, IdAlmacen, cantidad, fechaActualizacion) VALUES (?, ?, ?,?)";
+         Connection con = new DbConnection().getConnection();
+        try (
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setInt(1, inventario.getArticulo().getIdArticulo());
-            stmt.setDouble(2, inventario.getCantidad());
-            stmt.setString(3, inventario.getFechaActualizacion());
-            stmt.executeUpdate();
+            stmt.setInt(2, inventario.getAlmacen().getIdAlmacen());
+            stmt.setDouble(3, inventario.getCantidad());
+            stmt.setString(4, inventario.getFechaActualizacion());
+            stmt.executeUpdate(); 
 
             System.out.println("Inventario insertado correctamente.");
 
@@ -30,6 +33,52 @@ public class inventarioDAO {
             e.printStackTrace();
         }
     }
+
+    public void actualizarInventario(int idInventario, double nuevaCantidad) {
+        String sql = "UPDATE inventario SET cantidad = ?, fechaActualizacion = ? WHERE idInventario = ?";
+
+        try (Connection con = new DbConnection().getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setDouble(1, nuevaCantidad);
+            stmt.setString(2, java.time.LocalDate.now().toString());
+            stmt.setInt(3, idInventario);
+           
+             int filasAfectadas = stmt.executeUpdate();
+
+        if (filasAfectadas > 0) {
+            System.out.println("Cantidad de inventario actualizada correctamente.");
+           
+        } else {
+            System.err.println("Advertencia: No se encontró inventario con id: " + idInventario + " para actualizar.");
+           
+        }
+
+            System.out.println("Cantidad de inventario actualizada correctamente.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void eliminarInventario(int idInventario) {
+        String sql = "DELETE FROM inventario WHERE idInventario = ?";
+
+        try (Connection con = new DbConnection().getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, idInventario);
+            stmt.executeUpdate();
+
+            System.out.println("Inventario eliminado correctamente.");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public List<InventarioMod> obtenerProductosConStockBajo() {
         List<InventarioMod> productos = new ArrayList<>();
         String sql = "SELECT i.idInventario, i.idArticulo, i.cantidad, a.nombre " +

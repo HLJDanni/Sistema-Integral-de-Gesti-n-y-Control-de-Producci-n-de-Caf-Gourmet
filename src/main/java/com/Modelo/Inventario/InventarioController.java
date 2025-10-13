@@ -6,16 +6,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/inventario")
 public class InventarioController {
 
-    private InventarioService service = new InventarioService();
-
-    @PostMapping("/generar-orden")
-    public String generarOrden() {
-        boolean creada = service.generarOrdenSiStockBajo();
-
-        if (creada) {
-            return "✅ Orden de compra generada correctamente.";
-        } else {
-            return "ℹ️ No hay productos con stock bajo.";
+    public void registrarInventario(InventarioMod inventario) {
+        try {
+            inventarioDAO dao = new inventarioDAO();
+            dao.actualizarInventario(   inventario.getIdInventario(), inventario.getCantidad());
+            System.out.println("Inventario guardado o actualizado correctamente.");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
+
+
+
+
