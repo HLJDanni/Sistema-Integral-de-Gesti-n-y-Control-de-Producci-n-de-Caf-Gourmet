@@ -1,5 +1,5 @@
 package com.Produccion;
-
+/* 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,9 +11,34 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import org.aspectj.weaver.ast.Test;
-
+*/
 public class produccionDAO {
-    
+   /* // obtener lista de artículos
+     public List<articulo> obtenerArticulos() {
+        List<articulo> lista = new ArrayList<>();
+        String sql = "SELECT idArticulo, nombre, tipoArticulo, stock FROM Articulo";
+
+        try (Connection con = new DbConnection().getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                articulo art = new articulo();
+                art.setIdArticulo(rs.getInt("idArticulo"));
+                art.setNombre(rs.getString("nombre"));
+                art.setTipoArticulo(rs.getString("tipoArticulo"));
+                art.setStock(rs.getDouble("stock"));
+                lista.add(art);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
+
+
+
     public void obtenerproducto() {
         String sql = "SELECT idArticulo From Articulo WHERE tipoArticulo = 'Producto'";
 
@@ -45,5 +70,5 @@ public class produccionDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    } */
 }

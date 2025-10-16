@@ -3,16 +3,16 @@ package com.Produccion;
 public class detalle_produccion {       
     private int idDetalleProduccion;
     private produccion produccion;
-    private articulo articulo;
-    private int cantidadUtilizada;
+   // private articulo articulo;
+    //private int cantidadUtilizada;
 
     // Constructor
-    public detalle_produccion(int idDetalleProduccion, produccion produccion, articulo articulo, int cantidadUtilizada) {
+  /*   public detalle_produccion(int idDetalleProduccion, produccion produccion, articulo articulo, int cantidadUtilizada) {
         this.idDetalleProduccion = idDetalleProduccion;
         this.produccion = produccion;
-        this.articulo = articulo;
+    //    this.articulo = articulo;
         this.cantidadUtilizada = cantidadUtilizada;
-    }
+    }*/
 
     // Getters y Setters
     public int getIdDetalleProduccion() {
@@ -29,22 +29,22 @@ public class detalle_produccion {
 
     public void setProduccion(produccion produccion) {
         this.produccion = produccion;
+    
     }
+    //public articulo getArticulo() {
+    //    return articulo;
+    //}
 
-    public articulo getArticulo() {
-        return articulo;
-    }
+   // public void setArticulo(articulo articulo) {
+       // this.articulo = articulo;
+   // }
 
-    public void setArticulo(articulo articulo) {
-        this.articulo = articulo;
-    }
+  //  public int getCantidadUtilizada() {
+      //  return cantidadUtilizada;
+ //   }
 
-    public int getCantidadUtilizada() {
-        return cantidadUtilizada;
-    }
-
-    public void setCantidadUtilizada(int cantidadUtilizada) {
-        this.cantidadUtilizada = cantidadUtilizada;
-    }
+  //  public void setCantidadUtilizada(int cantidadUtilizada) {
+  //      this.cantidadUtilizada = cantidadUtilizada;
+  //  }
     
 }

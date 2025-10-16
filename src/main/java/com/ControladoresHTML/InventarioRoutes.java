@@ -1,10 +1,9 @@
 package com.ControladoresHTML;
 
-package com.ControladoresHTML;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
+//import java.util.List;
+
 import com.Modelo.Inventario.InventarioMod;
 import com.Modelo.Inventario.inventarioDAO;
 
@@ -15,11 +14,11 @@ public class InventarioRoutes {
     @Autowired
     private inventarioDAO dao;
 
-    // Crear o actualizar inventario
-    @PostMapping("/guardar")
-    public boolean guardarInventario(@RequestBody InventarioMod inventario) {
+    // 🔹 Crear un nuevo registro de inventario
+    @PostMapping("/crear")
+    public boolean crearInventario(@RequestBody InventarioMod inventario) {
         try {
-            dao.actualizarInventario(inventario);
+            dao.insertarInventario(inventario);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,22 +26,38 @@ public class InventarioRoutes {
         }
     }
 
-    // Obtener todos los inventarios
-    @GetMapping("/listar")
-    public List<InventarioMod> listarInventarios() {
+    // 🔹 Consultar el inventario (ejemplo: todos los registros)
+    @GetMapping("/consultar/{idAlmacen}/{idArticulo}")
+public Double consultarInventario(@PathVariable int idAlmacen, @PathVariable int idArticulo) {
+    try {
+        return dao.consultarInventario(idArticulo, idAlmacen);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
+}
+
+    // 🔹 Actualizar inventario existente
+    @PutMapping("/actualizar")
+    public boolean actualizarInventario(@RequestBody InventarioMod inventario) {
         try {
-            return dao.obtenerTodosInventarios();
+            dao.actualizarInventario(
+                inventario.getArticulo(),
+                inventario.getAlmacen(),
+                inventario.getCantidad()
+            );
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
-    // Eliminar inventario
-    @DeleteMapping("/eliminar/{idArticulo}")
-    public boolean eliminarInventario(@PathVariable int idArticulo) {
+    // 🔹 Eliminar inventario (por id del artículo y almacén)
+    @DeleteMapping("/eliminar")
+    public boolean eliminarInventario(@RequestBody InventarioMod inventario) {
         try {
-            dao.eliminarInventario(idArticulo);
+            dao.eliminarInventario(inventario);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
