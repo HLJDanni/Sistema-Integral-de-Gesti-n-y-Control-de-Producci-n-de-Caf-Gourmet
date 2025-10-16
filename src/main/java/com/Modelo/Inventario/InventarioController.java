@@ -1,19 +1,33 @@
 package com.Modelo.Inventario;
 
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/inventario")
 public class InventarioController {
 
-    public void registrarInventario(InventarioMod inventario) {
-        try {
-            inventarioDAO dao = new inventarioDAO();
-            dao.actualizarInventario(   inventario.getIdInventario(), inventario.getCantidad());
-            System.out.println("Inventario guardado o actualizado correctamente.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+     
+    private final InventarioService service;
+
+   //@Autowired
+    public InventarioController(InventarioService service) {
+        this.service = service;
+    }
+
+     // Guardar o actualizar inventario
+    @PostMapping("/guardar")
+    public String guardarInventario(@RequestBody InventarioMod inventario) {
+        service.guardarInventario(inventario);
+        return "Inventario procesado correctamente";
+    }
+
+    // Eliminar inventario
+    @DeleteMapping("/eliminar")
+    public String eliminarInventario(@RequestBody InventarioMod inventario) {
+        service.eliminarInventario(inventario);
+        return "Inventario eliminado correctamente";
     }
 }
 
