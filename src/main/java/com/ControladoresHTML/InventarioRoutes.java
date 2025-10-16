@@ -14,7 +14,7 @@ public class InventarioRoutes {
     @Autowired
     private inventarioDAO dao;
 
-    // 🔹 Crear un nuevo registro de inventario
+    //  Crear un nuevo registro de inventario
     @PostMapping("/crear")
     public boolean crearInventario(@RequestBody InventarioMod inventario) {
         try {
@@ -26,7 +26,7 @@ public class InventarioRoutes {
         }
     }
 
-    // 🔹 Consultar el inventario (ejemplo: todos los registros)
+    //  Consultar el inventario (ejemplo: todos los registros)
     @GetMapping("/consultar/{idAlmacen}/{idArticulo}")
 public Double consultarInventario(@PathVariable int idAlmacen, @PathVariable int idArticulo) {
     try {
@@ -37,7 +37,7 @@ public Double consultarInventario(@PathVariable int idAlmacen, @PathVariable int
     }
 }
 
-    // 🔹 Actualizar inventario existente
+    //  Actualizar inventario existente
     @PutMapping("/actualizar")
     public boolean actualizarInventario(@RequestBody InventarioMod inventario) {
         try {
@@ -53,7 +53,7 @@ public Double consultarInventario(@PathVariable int idAlmacen, @PathVariable int
         }
     }
 
-    // 🔹 Eliminar inventario (por id del artículo y almacén)
+    //  Eliminar inventario (por id del artículo y almacén)
     @DeleteMapping("/eliminar")
     public boolean eliminarInventario(@RequestBody InventarioMod inventario) {
         try {
