@@ -3,6 +3,8 @@ package com.Modelo.Inventario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,7 +26,38 @@ public class inventarioDAO {
     public inventarioDAO(DbConnection db) {
         this.db = db;
     }
-        @GetMapping("/listar")
+    public List<InventarioMod> listarInventario() {
+        List<InventarioMod> lista = new ArrayList<>();
+
+        String sql = "SELECT idtArticulo, idAlmacen, stock, Fecha_Actualizacion FROM inventario";
+
+        try (Connection con = db.getConnection();
+         PreparedStatement stmt = con.prepareStatement(sql);
+         var rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+            InventarioMod inv = new InventarioMod();
+
+              
+                inv.getArticulo().setIdArticulo(rs.getInt("idtArticulo"));
+                inv.getAlmacen().setIdAlmacen(rs.getInt("idAlmacen"));
+                inv.setCantidad(rs.getDouble("stock"));
+                inv.setFechaActualizacion(rs.getString("Fecha_Actualizacion"));
+
+                lista.add(inv);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error al listar inventario: " + e.getMessage());
+    }
+
+    return lista;
+}
+
+
+
+
+        @GetMapping("/consultar")
     public Double consultarInventario(int idArticulo, int idAlmacen) {
         String sql = "SELECT stock FROM inventario WHERE idtArticulo = ? AND idAlmacen = ?";
 

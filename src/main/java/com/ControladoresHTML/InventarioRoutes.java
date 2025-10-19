@@ -1,5 +1,8 @@
 package com.ControladoresHTML;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 //import java.util.List;
@@ -26,7 +29,16 @@ public class InventarioRoutes {
         }
     }
 
-    //  Consultar el inventario (ejemplo: todos los registros)
+     @GetMapping("/listar")
+public List<InventarioMod> listarInventario() {
+    try {
+        return dao.listarInventario();
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ArrayList<>();
+    }
+}
+       
     @GetMapping("/consultar/{idAlmacen}/{idArticulo}")
 public Double consultarInventario(@PathVariable int idAlmacen, @PathVariable int idArticulo) {
     try {

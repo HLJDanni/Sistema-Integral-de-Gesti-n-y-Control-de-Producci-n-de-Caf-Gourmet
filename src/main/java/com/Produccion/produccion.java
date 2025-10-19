@@ -1,7 +1,10 @@
 package com.Produccion;
 
+import com.Modelo.Inventario.almacen;
+import com.Modelo.Inventario.articulo;
+
 public class produccion {
-   /* private int idProduccion;
+    private int idProduccion;
     private articulo articulo;
     private int cantidadProducida;
     private String fechaProduccion;
@@ -56,5 +59,5 @@ public class produccion {
     public void setAlmacenDestino(almacen almacenDestino) {
         this.almacenDestino = almacenDestino;
     }
-    */
+    
 }
