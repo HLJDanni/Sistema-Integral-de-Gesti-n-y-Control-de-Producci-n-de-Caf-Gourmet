@@ -1,4 +1,4 @@
-package com.coffee.coffee.Monitores;
+package com.ControladoresHTML.Monitores;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
