@@ -1,24 +1,34 @@
 package com.Produccion;
-/* 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
 
 import com.Modelo.Inventario.articulo;
 import com.coffee.coffee.Conexión.DbConnection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import org.aspectj.weaver.ast.Test;
-*/
+
+
+
+
+@Repository
 public class produccionDAO {
-   /* // obtener lista de artículos
-     public List<articulo> obtenerArticulos() {
+    private final DbConnection db;
+    public produccionDAO(DbConnection db) {
+        this.db = db;
+    }
+
+
+    // Método para obtener todos los artículos disponibles
+    public List<articulo> obtenerArticulos() {
         List<articulo> lista = new ArrayList<>();
         String sql = "SELECT idArticulo, nombre, tipoArticulo, stock FROM Articulo";
 
-        try (Connection con = new DbConnection().getConnection();
+        try (Connection con = db.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -26,49 +36,72 @@ public class produccionDAO {
                 articulo art = new articulo();
                 art.setIdArticulo(rs.getInt("idArticulo"));
                 art.setNombre(rs.getString("nombre"));
-                art.setTipoArticulo(rs.getString("tipoArticulo"));
-                art.setStock(rs.getDouble("stock"));
+                //art.setTipoGrano(rs.getString("tipoArticulo"));
                 lista.add(art);
             }
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(" Error al obtener artículos: " + e.getMessage());
         }
+
         return lista;
     }
 
+    public int registrarProduccion(produccion prod) {
+        String sql = "INSERT INTO produccion (Articulo_idtArticulo, cantidad_producida, fecha, Users_idUsuario, idEtapa, idtareas_produccion) VALUES (?, ?, ?, ?, ?,?)";
 
+        try (Connection con = db.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS)) {
+            stmt.setInt(1, prod.getArticulo().getIdArticulo());
+            stmt.setInt(2, prod.getCantidadProducida());
+            java.sql.Date fechaSQL = java.sql.Date.valueOf(prod.getFechaProduccion());
+            stmt.setDate(3, fechaSQL);
+            stmt.setInt(4, prod.getUsuario().getIdUsuario());
+            stmt.setInt(5, prod.getIdEtapa());
+            stmt.setInt(6, prod.getIdTareasProduccion());
 
-
-    public void obtenerproducto() {
-        String sql = "SELECT idArticulo From Articulo WHERE tipoArticulo = 'Producto'";
-
-        try (Connection con = new DbConnection().getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql)) {
-
-            stmt.setInt(1, articulo.getIdArticulo());
-            
-            stmt.executeUpdate();
-
-            System.out.println("Inventario insertado correctamente.");
+           
+            int filas = stmt.executeUpdate();
+            if (filas > 0) {
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        int idGenerado = rs.getInt(1);
+                        System.out.println(" Producción registrada con ID: " + idGenerado);
+                        return idGenerado;
+                    }
+                }
+            }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error al registrar producción: " + e.getMessage());
         }
-    }
-    public void actualizarProduccion(produccion prod) {
-        // Lógica para actualizar la producción en la base de datos
-    }
-    public void eliminarProduccion(int idProduccion) {
-        // Lógica para eliminar la producción de la base de datos
+        return -1; // error
+    }   
+
+    public void actualizarporduccion(produccion prod) {
+        String sql = "UPDATE produccion SET Articulo_idtArticulo = ?, cantidad_producida = ?, fecha = ?, Users_idUsuario = ?, idEtapa = ?, idtareas_produccion = ? WHERE idProduccion = ?";
+
+        try (Connection con = db.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, prod.getArticulo().getIdArticulo());
+            stmt.setInt(2, prod.getCantidadProducida());
+            java.sql.Date fechaSQL = java.sql.Date.valueOf(prod.getFechaProduccion());
+            stmt.setDate(3, fechaSQL);
+            stmt.setInt(4, prod.getUsuario().getIdUsuario());
+            stmt.setInt(5, prod.getIdEtapa());
+            stmt.setInt(6, prod.getIdTareasProduccion());
+            stmt.setInt(7, prod.getIdProduccion());
+
+            int filasActualizadas = stmt.executeUpdate();
+            if (filasActualizadas > 0) {
+                System.out.println(" Producción actualizada exitosamente.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar producción: " + e.getMessage());
+        }
     }
 
-    public void registrarProduccion(produccion prod) {
-        try {
-            produccionDAO dao = new produccionDAO();
-            dao.obtenerproducto();
-            System.out.println("Producción registrada correctamente.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    } */
+    
 }

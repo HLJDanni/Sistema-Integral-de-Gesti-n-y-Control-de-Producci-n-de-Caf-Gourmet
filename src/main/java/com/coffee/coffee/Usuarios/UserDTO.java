@@ -4,6 +4,7 @@ public class UserDTO {
     private String username;
     private String password;
     private String rol;
+    private int idUsuario;
 
     // Getters y setters
     public String getUsername() {
@@ -24,5 +25,10 @@ public class UserDTO {
     public void setRol(String rol) {
         this.rol = rol;
     }
-    
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 }

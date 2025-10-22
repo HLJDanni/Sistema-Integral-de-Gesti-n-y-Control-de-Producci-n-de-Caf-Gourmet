@@ -22,9 +22,9 @@ public class InventarioService {
                 inventario.getAlmacen().getIdAlmacen()
             );
 
-            // Si no existe el registro → insertar
+            // Si no existe el registro
             if (dao.existencia(inventario.getArticulo().getIdArticulo(), inventario.getAlmacen().getIdAlmacen())) {
-                // Si existe → actualizar sumando la cantidad
+                // Si existe  actualizar sumando la cantidad
                 double nuevaCantidad = stockActual + inventario.getCantidad();
                 dao.actualizarInventario(
                     inventario.getArticulo(),

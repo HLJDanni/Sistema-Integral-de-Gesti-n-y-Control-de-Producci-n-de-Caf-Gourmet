@@ -1,31 +1,63 @@
 package com.Produccion;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import com.Modelo.Inventario.almacen;
 import com.Modelo.Inventario.articulo;
+import com.coffee.coffee.Usuarios.UserDTO;
 
 public class produccion {
     private int idProduccion;
-    private articulo articulo;
-    private int cantidadProducida;
-    private String fechaProduccion;
-    private almacen almacenDestino;
+    private int idArticulo;         
+    private int idAlmacenDestino;  
 
-    // Constructor
-    public produccion(int idProduccion, articulo articulo, int cantidadProducida, String fechaProduccion, almacen almacenDestino) {
+    private articulo articulo;
+    private almacen almacenDestino;
+    private UserDTO usuario;        
+
+    private int cantidadProducida;
+    private LocalDate fechaProduccion;
+    private int idEtapa;
+    private int idTareasProduccion;
+
+    private List<detalle_produccion> detalles;
+
+    //  Constructor vacío 
+    public produccion() {}
+
+    //  Constructor general (útil para crear manualmente desde DAO)
+    public produccion(int idProduccion, int idArticulo, int cantidadProducida, LocalDate fechaProduccion, int idAlmacenDestino) {
         this.idProduccion = idProduccion;
-        this.articulo = articulo;
+        this.idArticulo = idArticulo;
         this.cantidadProducida = cantidadProducida;
         this.fechaProduccion = fechaProduccion;
-        this.almacenDestino = almacenDestino;
+        this.idAlmacenDestino = idAlmacenDestino;
     }
 
-    // Getters y Setters
+     // Getters y Setters
     public int getIdProduccion() {
         return idProduccion;
     }
 
     public void setIdProduccion(int idProduccion) {
         this.idProduccion = idProduccion;
+    }
+
+    public int getIdArticulo() {
+        return idArticulo;
+    }
+
+    public void setIdArticulo(int idArticulo) {
+        this.idArticulo = idArticulo;
+    }
+
+    public int getIdAlmacenDestino() {
+        return idAlmacenDestino;
+    }
+
+    public void setIdAlmacenDestino(int idAlmacenDestino) {
+        this.idAlmacenDestino = idAlmacenDestino;
     }
 
     public articulo getArticulo() {
@@ -36,6 +68,22 @@ public class produccion {
         this.articulo = articulo;
     }
 
+    public almacen getAlmacenDestino() {
+        return almacenDestino;
+    }
+
+    public void setAlmacenDestino(almacen almacenDestino) {
+        this.almacenDestino = almacenDestino;
+    }
+
+    public UserDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UserDTO usuario) {
+        this.usuario = usuario;
+    }
+
     public int getCantidadProducida() {
         return cantidadProducida;
     }
@@ -44,20 +92,35 @@ public class produccion {
         this.cantidadProducida = cantidadProducida;
     }
 
-    public String getFechaProduccion() {
+    public LocalDate getFechaProduccion() {
         return fechaProduccion;
     }
 
-    public void setFechaProduccion(String fechaProduccion) {
+    public void setFechaProduccion(LocalDate fechaProduccion) {
         this.fechaProduccion = fechaProduccion;
     }
 
-    public almacen getAlmacenDestino() {
-        return almacenDestino;
+    public int getIdEtapa() {
+        return idEtapa;
     }
 
-    public void setAlmacenDestino(almacen almacenDestino) {
-        this.almacenDestino = almacenDestino;
+    public void setIdEtapa(int idEtapa) {
+        this.idEtapa = idEtapa;
     }
-    
+
+    public int getIdTareasProduccion() {
+        return idTareasProduccion;
+    }
+
+    public void setIdTareasProduccion(int idTareasProduccion) {
+        this.idTareasProduccion = idTareasProduccion;
+    }
+
+    public List<detalle_produccion> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<detalle_produccion> detalles) {
+        this.detalles = detalles;
+    }
 }
