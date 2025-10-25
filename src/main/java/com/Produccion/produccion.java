@@ -1,6 +1,6 @@
 package com.Produccion;
 
-import com.Modelo.Inventario.almacen;
+//import com.Modelo.Inventario.almacen;
 import com.Modelo.Inventario.articulo;
 import com.Usuarios.UserDTO;
 import java.time.LocalDate;
@@ -13,13 +13,14 @@ public class produccion {
     private int idAlmacenDestino;
 
     private articulo articulo;
-    private almacen almacenDestino;
+    private int almacenDestino;
     private UserDTO usuario;
 
-    private int cantidadProducida;
+    private Double cantidadProducida;
     private LocalDate fechaProduccion;
     private int idEtapa;
     private int idTareasProduccion;
+    private String Estado;
 
     private List<detalle_produccion> detalles;
 
@@ -30,7 +31,7 @@ public class produccion {
     public produccion(
         int idProduccion,
         int idArticulo,
-        int cantidadProducida,
+        Double cantidadProducida,
         LocalDate fechaProduccion,
         int idAlmacenDestino
     ) {
@@ -74,11 +75,11 @@ public class produccion {
         this.articulo = articulo;
     }
 
-    public almacen getAlmacenDestino() {
+    public int getAlmacenDestino() {
         return almacenDestino;
     }
 
-    public void setAlmacenDestino(almacen almacenDestino) {
+    public void setAlmacenDestino(int almacenDestino) {
         this.almacenDestino = almacenDestino;
     }
 
@@ -90,11 +91,11 @@ public class produccion {
         this.usuario = usuario;
     }
 
-    public int getCantidadProducida() {
+    public Double getCantidadProducida() {
         return cantidadProducida;
     }
 
-    public void setCantidadProducida(int cantidadProducida) {
+    public void setCantidadProducida(Double cantidadProducida) {
         this.cantidadProducida = cantidadProducida;
     }
 
@@ -128,5 +129,11 @@ public class produccion {
 
     public void setDetalles(List<detalle_produccion> detalles) {
         this.detalles = detalles;
+    }
+    public String getEstado() {
+        return Estado;
+    }
+    public void setEstado(String estado) {
+        Estado = estado;
     }
 }

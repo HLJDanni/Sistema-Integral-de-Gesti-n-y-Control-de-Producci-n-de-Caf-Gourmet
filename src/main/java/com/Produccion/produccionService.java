@@ -2,6 +2,8 @@ package com.Produccion;
 
 import com.Modelo.Inventario.InventarioMod;
 import com.Modelo.Inventario.InventarioService;
+import com.Modelo.Inventario.almacen;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +54,12 @@ public class produccionService {
         if (inventarioService != null) {
             InventarioMod inventarioEncabezado = new InventarioMod();
             inventarioEncabezado.setArticulo(produccion.getArticulo()); // artículo final
-            inventarioEncabezado.setAlmacen(produccion.getAlmacenDestino()); // almacén de destino
+           int idAlmacen = produccion.getAlmacenDestino(); // Usar la llamada que da error como si devolviera el INT
+
+            almacen almacenDestino = new almacen(); 
+            almacenDestino.setIdAlmacen(idAlmacen);
+            inventarioEncabezado.setAlmacen(almacenDestino); 
+ 
             inventarioEncabezado.setCantidad(produccion.getCantidadProducida()); 
             inventarioService.guardarInventario(inventarioEncabezado);
         }
