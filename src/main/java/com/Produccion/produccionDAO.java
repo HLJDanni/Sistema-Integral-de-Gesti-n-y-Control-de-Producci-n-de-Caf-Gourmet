@@ -53,7 +53,7 @@ public class produccionDAO {
         try (Connection con = db.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql, java.sql.Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, prod.getArticulo().getIdArticulo());
-            stmt.setInt(2, prod.getCantidadProducida());
+            stmt.setDouble(2, prod.getCantidadProducida());
             java.sql.Date fechaSQL = java.sql.Date.valueOf(prod.getFechaProduccion());
             stmt.setDate(3, fechaSQL);
             stmt.setInt(4, prod.getUsuario().getIdUsuario());
@@ -85,7 +85,7 @@ public class produccionDAO {
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setInt(1, prod.getArticulo().getIdArticulo());
-            stmt.setInt(2, prod.getCantidadProducida());
+            stmt.setDouble(2, prod.getCantidadProducida());
             java.sql.Date fechaSQL = java.sql.Date.valueOf(prod.getFechaProduccion());
             stmt.setDate(3, fechaSQL);
             stmt.setInt(4, prod.getUsuario().getIdUsuario());
