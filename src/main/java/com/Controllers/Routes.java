@@ -1,21 +1,18 @@
-package com.ControladoresHTML;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+package com.Controllers;
 
 import com.coffee.coffee.GestiónGranos.GestionMP_GranosVerdesAdd;
 import com.coffee.coffee.GestiónGranos.TipoGrano;
 import com.coffee.coffee.GestiónGranos.TipoGranoRequest;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/tipo-grano")
@@ -27,7 +24,10 @@ public class Routes {
     // CREATE
     @PostMapping("/crear")
     public boolean crearTipoGrano(@RequestBody TipoGranoRequest request) {
-        return gestionGrano.agregarTipoGrano(request.getNombre(), request.getDescripcion());
+        return gestionGrano.agregarTipoGrano(
+            request.getNombre(),
+            request.getDescripcion()
+        );
     }
 
     // READ
@@ -38,8 +38,15 @@ public class Routes {
 
     // UPDATE
     @PutMapping("/actualizar/{id}")
-    public boolean actualizarTipoGrano(@PathVariable int id, @RequestBody TipoGranoRequest request) {
-        return gestionGrano.actualizarTipoGrano(id, request.getNombre(), request.getDescripcion());
+    public boolean actualizarTipoGrano(
+        @PathVariable int id,
+        @RequestBody TipoGranoRequest request
+    ) {
+        return gestionGrano.actualizarTipoGrano(
+            id,
+            request.getNombre(),
+            request.getDescripcion()
+        );
     }
 
     // DELETE
@@ -47,12 +54,4 @@ public class Routes {
     public boolean eliminarTipoGrano(@PathVariable int id) {
         return gestionGrano.eliminarTipoGrano(id);
     }
-
-    
-
-
-
-
-
 }
-

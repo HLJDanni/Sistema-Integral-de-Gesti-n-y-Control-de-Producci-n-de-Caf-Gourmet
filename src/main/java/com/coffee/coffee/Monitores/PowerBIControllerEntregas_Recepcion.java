@@ -1,16 +1,16 @@
-package com.ControladoresHTML.Monitores;
+package com.coffee.coffee.Monitores;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PowerBIControllerProgreso_Prod {
+public class PowerBIControllerEntregas_Recepcion {
 
     // URL del panel de Power BI (La URL va a cambiar cuando se terminen de hacer los págnes y estén publicados)
     private static final String POWER_BI_URL =
         "https://app.powerbi.com/view?r=TU_ID_DE_REPORTE";
 
-    @GetMapping("/panelProgreso/powerbi")
+    @GetMapping("/panelEntregas/powerbi")
     public String getPowerBILink() {
         // Retorna el enlace como HTML simple (Se puede usar JSON si uno quiere)
         return (
