@@ -1,20 +1,20 @@
 package com.Produccion;
 
+import com.Modelo.Inventario.almacen;
+import com.Modelo.Inventario.articulo;
+import com.Usuarios.UserDTO;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.Modelo.Inventario.almacen;
-import com.Modelo.Inventario.articulo;
-import com.coffee.coffee.Usuarios.UserDTO;
-
 public class produccion {
+
     private int idProduccion;
-    private int idArticulo;         
-    private int idAlmacenDestino;  
+    private int idArticulo;
+    private int idAlmacenDestino;
 
     private articulo articulo;
     private almacen almacenDestino;
-    private UserDTO usuario;        
+    private UserDTO usuario;
 
     private int cantidadProducida;
     private LocalDate fechaProduccion;
@@ -23,11 +23,17 @@ public class produccion {
 
     private List<detalle_produccion> detalles;
 
-    //  Constructor vacío 
+    //  Constructor vacío
     public produccion() {}
 
     //  Constructor general (útil para crear manualmente desde DAO)
-    public produccion(int idProduccion, int idArticulo, int cantidadProducida, LocalDate fechaProduccion, int idAlmacenDestino) {
+    public produccion(
+        int idProduccion,
+        int idArticulo,
+        int cantidadProducida,
+        LocalDate fechaProduccion,
+        int idAlmacenDestino
+    ) {
         this.idProduccion = idProduccion;
         this.idArticulo = idArticulo;
         this.cantidadProducida = cantidadProducida;
@@ -35,7 +41,7 @@ public class produccion {
         this.idAlmacenDestino = idAlmacenDestino;
     }
 
-     // Getters y Setters
+    // Getters y Setters
     public int getIdProduccion() {
         return idProduccion;
     }

@@ -1,14 +1,13 @@
-package com.ControladoresHTML;
+package com.Controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 //import java.util.List;
 
 import com.Modelo.Inventario.InventarioMod;
 import com.Modelo.Inventario.inventarioDAO;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/inventario")
@@ -29,25 +28,28 @@ public class InventarioRoutes {
         }
     }
 
-     @GetMapping("/listar")
-public List<InventarioMod> listarInventario() {
-    try {
-        return dao.listarInventario();
-    } catch (Exception e) {
-        e.printStackTrace();
-        return new ArrayList<>();
+    @GetMapping("/listar")
+    public List<InventarioMod> listarInventario() {
+        try {
+            return dao.listarInventario();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
-}
-       
+
     @GetMapping("/consultar/{idAlmacen}/{idArticulo}")
-public Double consultarInventario(@PathVariable int idAlmacen, @PathVariable int idArticulo) {
-    try {
-        return dao.consultarInventario(idArticulo, idAlmacen);
-    } catch (Exception e) {
-        e.printStackTrace();
-        return null;
+    public Double consultarInventario(
+        @PathVariable int idAlmacen,
+        @PathVariable int idArticulo
+    ) {
+        try {
+            return dao.consultarInventario(idArticulo, idAlmacen);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-}
 
     //  Actualizar inventario existente
     @PutMapping("/actualizar")

@@ -1,5 +1,7 @@
-package com.Modelo.Inventario;
+package com.Controllers;
 
+import com.Modelo.Inventario.InventarioMod;
+import com.Modelo.Inventario.InventarioService;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,15 +10,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/inventario")
 public class InventarioController {
 
-     
     private final InventarioService service;
 
-   //@Autowired
+    //@Autowired
     public InventarioController(InventarioService service) {
         this.service = service;
     }
 
-     // Guardar o actualizar inventario
+    // Guardar o actualizar inventario
     @PostMapping("/guardar")
     public String guardarInventario(@RequestBody InventarioMod inventario) {
         service.guardarInventario(inventario);
@@ -30,7 +31,3 @@ public class InventarioController {
         return "Inventario eliminado correctamente";
     }
 }
-
-
-
-
